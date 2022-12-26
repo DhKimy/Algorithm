@@ -1,9 +1,5 @@
 func solution(_ strings:[String], _ n:Int) -> [String] {
-    
     var arrayStrings = strings
-
-    
-    
     return arrayStrings.sorted().sorted(by: { sortAESC($0, $1, n) })
 }
 
