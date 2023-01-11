@@ -2,13 +2,9 @@ import Foundation
 
 func solution(_ sizes:[[Int]]) -> Int {
     var innerSizes = sizes
-    for i in 0 ... innerSizes.count - 1 {
-        if innerSizes[i][0] < innerSizes[i][1] {
-            var temp = innerSizes[i][0]
-            innerSizes[i][0] = innerSizes[i][1]
-            innerSizes[i][1] = temp
-        }
-    }
+     for i in 0 ... innerSizes.count - 1 {
+         innerSizes[i] = innerSizes[i].sorted(by: >)
+     }
     var maxX = 0
     var maxY = 0
     for i in innerSizes {
