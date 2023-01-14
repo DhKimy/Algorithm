@@ -17,10 +17,8 @@ func solution(_ record:[String]) -> [String] {
             break
         }
     }
-    
     for (index, i) in result.enumerated() {
         result[index][0] = userList[i[0]]!
     }
-    
     return result.compactMap({ $0.joined() })
 }
