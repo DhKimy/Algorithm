@@ -25,6 +25,7 @@ func solution(_ s:String) -> [Int] {
             }
         }
     }
+    
     tuple.sort(by: { $0.count < $1.count })
     for i in 0 ... tuple.count - 1 {
         let temp1 = Set(answer)
