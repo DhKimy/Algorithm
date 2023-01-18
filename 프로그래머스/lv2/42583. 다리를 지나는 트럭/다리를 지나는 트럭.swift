@@ -5,7 +5,6 @@ func solution(_ bridge_length:Int, _ weight:Int, _ truck_weights:[Int]) -> Int {
     var crossingTrucks = truck_weights
     var wholeTime = 0
     var bridgeWeight = 0
-    
     while !waitingTrucks.isEmpty {
         wholeTime += 1
         bridgeWeight -= waitingTrucks.removeFirst()
