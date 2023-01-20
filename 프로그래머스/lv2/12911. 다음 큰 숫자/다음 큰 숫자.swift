@@ -11,6 +11,5 @@ func solution(_ n:Int) -> Int {
         }
         tempNumber += 1
     }
-    
     return answer
 }
