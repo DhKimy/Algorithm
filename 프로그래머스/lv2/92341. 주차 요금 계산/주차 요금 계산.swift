@@ -3,7 +3,6 @@ import Foundation
 func solution(_ fees:[Int], _ records:[String]) -> [Int] {
     var stackTimeDict: Dictionary = [Int : Int]()
     var timeDict: Dictionary = [Int : Int]()
-    
     for i in records {
         let temp = i.split(separator: " ")
         switch temp[2] {
