@@ -9,6 +9,7 @@ func solution(_ clothes:[[String]]) -> Int {
             dictionary[i[1]] = 1
         }
     }
+    
     var clothesCount = [Int]()
     dictionary.forEach({
         clothesCount.append($0.value)
