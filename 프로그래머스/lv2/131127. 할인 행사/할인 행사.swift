@@ -4,7 +4,6 @@ func solution(_ want:[String], _ number:[Int], _ discount:[String]) -> Int {
     var answer = 0
     var wantList: Dictionary = [String : Int]()
     initWantList(&wantList, want, number)
-    
     for i in 0 ... discount.count - number.reduce(0, +) {
         for j in i ..< i + 10 {
             if wantList.contains(where: { $0.key == discount[j] }) {
