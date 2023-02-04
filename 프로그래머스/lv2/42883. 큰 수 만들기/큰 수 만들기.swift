@@ -5,7 +5,6 @@ func solution(_ number:String, _ k:Int) -> String {
     var stack = [Character]()
     var count = 0
     var i = 0
-    
     while count < k && i < numbers.count {
         guard let last = stack.last else {
             stack.append(numbers[i])
