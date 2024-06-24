@@ -1,52 +1,61 @@
 solution_1260()
 
 func solution_1260() {
-    var nmv = readLine()!.split(separator: " ").map { Int(String($0))! }
-    let n = nmv[0]
-        let m = nmv[1]
-        let v = nmv[2]
+    let input = readLine()!.split(separator: " ").compactMap { Int($0) }
+    let (n, m, v) = (input[0], input[1], input[2])
+    var graph = [[Int]](repeating: [], count: n + 1)
 
-        var visited = Array(repeating: false, count: n+1)
-        var matrix = Array(repeating: Array(repeating: 0, count: n+1), count: n+1)
+    for _ in 1...m {
+        let edge = readLine()!.split(separator: " ").compactMap { Int($0) }
+        graph[edge[0]].append(edge[1])
+        graph[edge[1]].append(edge[0])
+    }
 
-        for i in 0..<m {
-            let nums = readLine()!.split(separator: " ").map{ Int(String($0))! }
-            matrix[nums[0]][nums[1]] = 1
-                matrix[nums[1]][nums[0]] = 1
-        }
+    for i in 1...n {
+        graph[i].sort()
+    }
 
-    func dfs(_ v: Int) {
-        visited[v] = true
-            print(v, terminator: " ")
-            for i in 1..<n+1 {
-                if visited[i] == false && matrix[v][i] == 1 {
-                    dfs(i)
+    func dfs() {
+        var visited = [Bool](repeating: false, count: n + 1)
+        var dfsSeq = [Int]()
+
+        func innerDfs(_ start: Int) {
+            visited[start] = true
+            dfsSeq.append(start)
+
+            for node in graph[start] {
+                if !visited[node] {
+                    innerDfs(node)
                 }
             }
+        }
+
+        innerDfs(v)
+        print(dfsSeq.map { String($0) }.joined(separator: " "))
     }
 
+    func bfs() {
+        var queue: [Int] = [v]
+        var visited = [Bool](repeating: false, count: n + 1)
+        var bfsSeq: [Int] = []
 
-    func bfs(_ v: Int) {
-        var queue: [Int] = []
-            visited[v] = false
-            queue.append(v)
+        visited[v] = true
 
-            while !queue.isEmpty {
-                var newV = queue.removeFirst()
-                    print(newV, terminator: " ")
+        while !queue.isEmpty {
+            let current = queue.removeFirst()
+            bfsSeq.append(current)
 
-                    for i in 1..<n+1 {
-                        if visited[i] == true && matrix[newV][i] == 1 {
-                            queue.append(i)
-                                visited[i] = false
-                        }
-                    }
-
+            for node in graph[current] {
+                if !visited[node] {
+                    queue.append(node)
+                    visited[node] = true
+                }
             }
+        }
 
+        print(bfsSeq.map { String($0) }.joined(separator: " "))
     }
 
-    dfs(v)
-    print("")
-    bfs(v)
+    dfs()
+    bfs()
 }
