@@ -1,31 +1,21 @@
-let T = Int(readLine()!)!
-var cases = [Int]()
-var maxNum = 0
+solution_9095_dp()
 
-for _ in 0..<T {
-    let num = Int(readLine()!)!
-    cases.append(num)
-    if num > maxNum {
-        maxNum = num
+func solution_9095_dp() {
+    let t = Int(readLine()!)!
+    var n = [Int]()
+    for _ in 1...t {
+        n.append(Int(readLine()!)!)
     }
-}
+    var dp = [Int](repeating: 0, count: 12)
+    dp[1] = 1
+    dp[2] = 2
+    dp[3] = 4
 
-var dp = [Int](repeating: 0, count: maxNum + 1)
+    for i in 4..<dp.count {
+        dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3]
+    }
 
-dp[0] = 1 // 0을 만드는 방법은 아무 수도 선택하지 않는 1가지 방법
-
-if maxNum >= 1 {
-    dp[1] = 1 // 1을 만드는 방법은 1 하나 선택하는 1가지 방법
-}
-
-if maxNum >= 2 {
-    dp[2] = 2 // 2를 만드는 방법은 1+1, 2 두 가지 방법
-}
-
-for i in 3...maxNum {
-    dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3]
-}
-
-for num in cases {
-    print(dp[num])
+    for i in n {
+        print(dp[i])
+    }
 }
