@@ -1,28 +1,27 @@
-let brackets = readLine()!.map { String($0) }
-var stack: [String] = []
-var answer = 0
-var pastBracket = ""
+func boj_10799() {
+    let input = readLine()!.map { $0 }
+    var stack = [Character]()
+    var result = 0
 
-for i in brackets {
-    if i == ")" && pastBracket == "(" {
-        if stack.count == 0 {
+    for (idx, i) in input.enumerated() {
+        if stack.isEmpty {
+            stack.append(i)
+            continue
+        }
 
-        } else if stack.count == 1 {
+        if i == ")" {
             stack.removeLast()
+            if input[idx - 1] == i {
+                result += 1
+            } else {
+                result += stack.count
+            }
         } else {
-            stack.removeLast()
-            answer += stack.count
+            stack.append(i)
         }
-        pastBracket = i
-    } else if i == ")" && pastBracket == ")" {
-        if stack.count > 0 {
-            stack.removeLast()
-            answer += 1
-            pastBracket = i
-        }
-    } else {
-        stack.append(i)
-        pastBracket = i
     }
+
+    print(result)
 }
-print(answer)
+
+boj_10799()
