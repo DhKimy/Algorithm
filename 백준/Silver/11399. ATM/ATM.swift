@@ -1,13 +1,12 @@
-solution_11399()
+let n = Int(readLine()!)!
+let time = readLine()!.split(separator: " ").map { Int($0)! }.sorted()
 
-func solution_11399() {
-    _ = Int(readLine()!)!
-    let times = readLine()!.split(separator: " ").compactMap { Int($0) }.sorted(by: <)
-    var answer = 0
+var total = 0
+var currentSum = 0
 
-    for i in 0..<times.count {
-        answer += times[0...i].reduce(0, +)
-    }
-
-    print(answer)
+for t in time {
+    currentSum += t
+    total += currentSum
 }
+
+print(total)
